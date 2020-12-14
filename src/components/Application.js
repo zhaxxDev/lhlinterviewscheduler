@@ -23,21 +23,36 @@ export default function Application(props) {
 	const interviewers = getInterviewersForDay(state, state.day);
 
 	function bookInterview(id, interview) {
-		const appointment = {
-			...state.appointments[id],
-			interview: { ...interview },
-		};
-		const appointments = {
-			...state.appointments,
-			[id]: appointment,
-		};
-		// console.log(id, interview);
-		console.log(appointments);
+		return axios
+			.put(`/api/appointments/${id}`, { interview })
+			.then((response) =>
+				Promise.all([
+					axios.get("/api/appointments"),
+					axios.get("/api/days"),
+				]).then((all) => {
+					setState({
+						...state,
+						appointments: all[0].data,
+						days: all[1].data,
+					});
+				}),
+			);
+	}
 
-		setState({
-			...state,
-			appointments,
-		});
+	function cancelInterview(id) {
+		return axios.delete(`/api/appointments/${id}`).then((response) =>
+			Promise.all([
+				axios.get("/api/appointments"),
+				axios.get("/api/days"),
+			]).then((all) => {
+				console.log("poggers");
+				setState({
+					...state,
+					appointments: all[0].data,
+					days: all[1].data,
+				});
+			}),
+		);
 	}
 
 	const schedule = appointments.map((appointment) => {
@@ -50,6 +65,7 @@ export default function Application(props) {
 				bookInterview={bookInterview}
 				interview={interview}
 				interviewers={interviewers}
+				cancelInterview={cancelInterview}
 			/>
 		);
 	});
@@ -83,6 +99,7 @@ export default function Application(props) {
 						day={state.day}
 						setDay={setDay}
 						bookInterview={bookInterview}
+						cancelInterview={cancelInterview}
 					/>
 				</nav>
 				<img
@@ -93,7 +110,12 @@ export default function Application(props) {
 			</section>
 			<section className="schedule">
 				{dailyAppointments.map((appointment) => schedule)}
-				<Appointment key="last" time="5pm" bookInterview={bookInterview} />
+				<Appointment
+					key="last"
+					time="5pm"
+					bookInterview={bookInterview}
+					cancelInterview={cancelInterview}
+				/>
 			</section>
 		</main>
 	);
