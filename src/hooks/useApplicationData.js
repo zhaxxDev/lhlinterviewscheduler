@@ -31,12 +31,12 @@ export default function useApplicationData() {
 				axios.get("/api/appointments"),
 				axios.get("/api/days"),
 			]).then((all) => {
-				console.log("poggers");
-				setState({
-					...state,
-					appointments: all[0].data,
-					days: all[1].data,
-				});
+				// console.log("poggers");
+				// setState({
+				// 	...state,
+				// 	appointments: all[0].data,
+				// 	days: all[1].data,
+				// });
 			}),
 		);
 	}
