@@ -21,33 +21,14 @@ export default function Application(props) {
 	const dailyAppointments = getAppointmentsForDay(state, state.day);
 	const appointments = getAppointmentsForDay(state, state.day);
 	const interviewers = getInterviewersForDay(state, state.day);
-
-	function bookInterview(id, interview) {
-		const appointment = {
-			...state.appointments[id],
-			interview: { ...interview },
-		};
-		const appointments = {
-			...state.appointments,
-			[id]: appointment,
-		};
-		// console.log(id, interview);
-		console.log(appointments);
-
-		setState({
-			...state,
-			appointments,
-		});
-	}
-
 	const schedule = appointments.map((appointment) => {
 		const interview = getInterview(state, appointment.interview);
+
 		return (
 			<Appointment
 				key={appointment.id}
 				id={appointment.id}
 				time={appointment.time}
-				bookInterview={bookInterview}
 				interview={interview}
 				interviewers={interviewers}
 			/>
@@ -66,8 +47,10 @@ export default function Application(props) {
 				appointments: all[1].data,
 				interviewers: all[2].data,
 			}));
+			console.log(all[2].data);
 		});
 	}, []);
+	console.log(state.interviewers);
 	return (
 		<main className="layout">
 			<section className="sidebar">
@@ -78,12 +61,7 @@ export default function Application(props) {
 				/>
 				<hr className="sidebar__separator sidebar--centered" />
 				<nav className="sidebar__menu">
-					<DayList
-						days={state.days}
-						day={state.day}
-						setDay={setDay}
-						bookInterview={bookInterview}
-					/>
+					<DayList days={state.days} day={state.day} setDay={setDay} />
 				</nav>
 				<img
 					className="sidebar__lhl sidebar--centered"
@@ -93,7 +71,7 @@ export default function Application(props) {
 			</section>
 			<section className="schedule">
 				{dailyAppointments.map((appointment) => schedule)}
-				<Appointment key="last" time="5pm" bookInterview={bookInterview} />
+				<Appointment key="last" time="5pm" />
 			</section>
 		</main>
 	);
