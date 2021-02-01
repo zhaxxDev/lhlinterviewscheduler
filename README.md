@@ -7,7 +7,7 @@ UseReducer,UseEffect and UseState hooks were used for state management.
 
 WebSocket updates the website without refreshing.
 
-Node js, Express js and POSTGRES for back-end part.
+Node js, Express js and POSTGRES for back-end.
 
 80% test coverage from JEST
 
