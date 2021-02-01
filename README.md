@@ -43,8 +43,12 @@ npm run cypress
 ## Screenshots 
  **Home page**
 ![](/screenshots/Home.png)
-  **Reactive sidebar**
+
+**Reactive sidebar**
 ![](/screenshots/menu.png)
+
+
+
  **Forms and errors**
 ![](/screenshots/appointments.png)
 
