@@ -40,21 +40,13 @@ npm run storybook
 ```sh
 npm run cypress
 ```
-## Final Product
- **No appointments**
-!["No appointments"](/screenshots/Home.png)
-  **Form**
-!["Form"]
- **Invalid input**
-!["Invalid input"]
- **Appoitnment Added**
-!["Appoitnment Added"]
- **Confirmation Message**
-!["Confirmation Message"]
- **Deleted and remaing spot incremented by 1**
-!["Desktop version"]
-  **Fully booked**
-!["Fully booked"]
+## Screenshots 
+ **Home page**
+![](/screenshots/Home.png)
+  **Reactive sidebar**
+![](/screenshots/menu.png)
+ **Forms and errors**
+![](/screenshots/appointments.png)
 
 
 
