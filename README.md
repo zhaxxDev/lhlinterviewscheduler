@@ -44,13 +44,16 @@ npm run cypress
  **Home page**
 ![](/screenshots/Home.png)
 
+**Forms and errors**
+![](/screenshots/appointments.png)
+
+
 **Reactive sidebar**
 ![](/screenshots/menu.png)
 
 
 
- **Forms and errors**
-![](/screenshots/appointments.png)
+ 
 
 
 
